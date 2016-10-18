@@ -5,7 +5,7 @@
   Include:
   - @all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]", "ratings[#{rating}]", @all_selected || @selected_ratings.include?(rating)
+    = check_box_tag "ratings[#{rating}]", "ratings[#{rating}]", @all_selected || session[:ratings].include?(rating)
   = submit_tag 'Refresh', :id => "ratings_submit"
   
 %table#movies
@@ -24,3 +24,5 @@
         %td= link_to "More about #{movie.title}", movie_path(movie)
 
 = link_to 'Add new movie', new_movie_path
+%p
+= link_to 'Clear all filter and sort settings', movies_path(:clear_settings => true)
